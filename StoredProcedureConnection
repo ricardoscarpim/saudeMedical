@@ -1,0 +1,54 @@
+/*  Nome        : FExecStored
+ *  Objetivo    : 
+ * 
+ */
+function FExecStored($NomeStored, $parametros = Array()) {
+    try {
+        
+        /* Conectar com a Banse. */
+        $pdo = FConectar();
+
+        /* Preparando a Pesquisa. */
+        $executar = $pdo->prepare($NomeStored);
+
+
+        /* Variavel Utilizada para Incrementar. */
+        $cont = 0;
+
+        /* Fazendo um For para Ler todos os Campos do Array passado como Parametro */
+        foreach ($parametros as $val) {
+
+            /* Incrementar */
+            $cont++;
+
+            /* Se forem os Dois Primeiros Campos */
+            if ($cont <= 2) {
+
+                /* Converte os Valores para Inteiro */
+                $converter = (int) $val;
+
+                /* Populando o BindParam. */
+                $executar->bindValue($cont, $val, PDO::PARAM_INT);
+            } else {
+                /* Mantem os Valores do Tipo String. */
+                $converter = $val;
+
+                $executar->bindValue($cont, $val, PDO::PARAM_STR);
+            }
+        }
+
+        /* Executando a Stored Procedure. */
+        $executar->execute();
+
+        /* Se Conseguir Cadastrar, Mostrar a Mensagem de Sucesso. */
+        if ($executar->rowCount() > 0):
+
+            return TRUE;
+        else:
+            return FALSE;
+        endif;
+    } catch (PDOException $exep) {
+
+        echo 'Error Trying to Execute Stored Procedure: ' + $exep->getMessage();
+    }
+}
