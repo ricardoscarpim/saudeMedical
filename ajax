@@ -1,0 +1,86 @@
+    function PBcTela(){        
+       
+        /* Ajax que Realiza a Pesquisa. */
+        $.ajax({
+            
+            url         : 'Pesquisas/PesquisaGenerica.php',
+            data        : 'pesquisar=' + 'v_pg_home_emp_dados',
+            type        : 'post',
+            dataType    : 'json',
+            
+            success: function (data) {        
+                
+                /* Se Existir Algum Conteudo de Retorno da Pesquisa*/
+                if(data.length > 0 ){
+                    
+                    var vHtml = '';
+
+                    /* Percorre Todo o Resultado para Mostrar na Tela. */
+                    $.each(data, function (key){
+
+                        /* Mostrar o Numero de Telefone, Caso Exista um Setado na Base de Dados. */
+                        if(data[key].emp_telefone !== '')
+
+                            $('#ObjTelefone').html('<a href="tel:' + data[key].emp_telefone + '"><img src="img/icons/PhoneCall.png"/>' + data[key].emp_telefone) + '</a>';
+
+                        /* Mostrar o Numero do Fax, Caso Exista um Setado na Base de Dados. */
+                        if(data[key].emp_fax !== '')
+
+                            $('#objFax').html('<a><img src="img/icons/fax.png"/> ' + data[key].emp_fax) + ' </a>';
+
+                        /* Mostrar o Endereco, Caso Exista um Setado na Base de Dados.  */
+                        if(data[key].emp_endereco !== '')
+
+                            $('#ObjEndereco').html('<a><img src="img/icons/place.png"/> ' + data[key].emp_endereco) + ' </a>';
+
+
+
+                        /* Se Existir um Caminho Setado para o Botao Facebook */
+                        if(data[key].emp_facebook !== ''){
+
+                            /* Adiciona a Div.*/
+                            vHtml += '<div class="col-lg-1 bt" id="btnFacebook">';
+
+                                /* Adiciona o Link na DIV*/                        
+                                vHtml += '<a href="' + data[key].emp_facebook + '"><img src="img/icons/facebook.png" rel="Pagina Facebook."/></a>';
+                            vHtml += '</div>';
+                        }
+
+                        /* Se Existir um Caminho Setado para o Botao Twitter*/
+                        if(data[key].emp_twitter !== '')
+                        {
+
+                            /* Adiciona a Div.*/
+                            vHtml += '<div class="col-lg-1 bt" id="btnTwitter">';
+
+                                /* Adicionando o Link. */
+                                vHtml += '<a><img src="img/icons/twitter.png"/></a>';                        
+                            vHtml += '</div>';
+                        }
+
+                        /* Se Existir um Caminho Setado para o Botao Google+*/
+                        if(data[key].emp_google !== '')
+                        {
+                                                      
+                             /* Adiciona o Link*/
+                            //$('#objGoogle').addClass('href', data[key].emp_google);                           
+                        }
+
+                        /* Adicionando o Link no Menu para Conexao com Site da NutraMetrix. */
+                        if(data[key].emp_nutrametrix !== ''){
+
+                            /* Adiciona a Div. */
+                            vHtml += '<div class="col-lg-1 bt" id="btnNutrametrix">';
+
+                                /* Adiciona o Link na DIV. */
+                                vHtml += '<a title="Programa Nutrametrix" href="' + data[key].emp_nutrametrix + '"><img src="img/icons/nutrametrix.png" rel="NutraMetrix Programm"/></a>';                            
+                            vHtml += '</div>';
+                        }
+
+                        /* Mostrando a Div. */
+                        $('#objDivs').html(vHtml);                    
+                    });
+                }
+            }
+        });
+    };
