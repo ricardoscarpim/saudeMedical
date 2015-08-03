@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="Description" content="Doutor Lauro, a Board Certified Nurse Practitioner
+              para cuidar das suas necessidades" />
+
+        <meta name="Keywords" content="Doutor Lauro, Rocha, Dr. Lauro, dr lauro, dr.lauro, Medico Brasileiro, Tratamento Diabetes, 
+              Pressao Alta, Medicina Preventiva, Exames, Exames Fisicos Anuais,
+              Tireoide, Perder Peso, Alimentacao Saudavel, Medico Newark, Medico New Jersey, Medico IronBound" />        
+
+<!--        Conexao com JQuery
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>        
+
+         Latest compiled and minified CSS 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+         Optional theme 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+         Latest compiled and minified JavaScript 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+
+        <!-- This is the Bootstrap Reference Link -->
+        
+        <link href="css/bootstrap.min.css"           rel="stylesheet"/>
+        <!--Pagina de Estilos-->
+        <link href="Estilos/css_Index.css"          rel="stylesheet"/> 
+
+
+        <title>Saude Medical Services LLC</title>
+    </head>
+    <body>
+
+
+
+        <!-- Esconde o Nome da Pagina Central. -->
+        <input type="hidden" id="cod_doutor" value=""/>
+        
+        <!--Esconde o Idioma Setado-->
+        <input type="hidden" id="cod_idioma" value="por"/>
+
+
+
+        <!--Responsavel pelo Menu Lateral com as Midias Sociais-->
+        <div class="visible-md visible-lg" id="MidiasSociais">            
+
+            <div class="col-lg-3" id="objDivs"></div>
+        </div>        
+
+        <!--Cabecalho da Pagina-->
+        <header>            
+
+            <div class="container-fluid">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <!--Imagem de Logotipo da Empresa.-->
+                        <div class="col-xs-2 col-sm-2 col-md_2 col-lg-2 visible-lg">
+
+                            <img src="img/fundo.png"/>
+                        </div>
+
+                        <!--Titulo do Site-->
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="DivTitulo">
+
+                            <p class="text-center" id="objTitulo">Saúde Medical Services</p>
+                        </div>
+                       
+                        <!--Logotipo da Empresa-->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="DivTitulo">
+
+                            <p><h2 class="text-center logotipo" id="objSubTitulo">Onde quer que Esteja sua Saúde em Primeiro Lugar.</h2></p>
+                        </div>
+                    </div>
+                </div>           
+            </div>            
+        </header>
+
+
+        <!--Esta e a Sessao do Menu-->
+        <section>
+            <div class="container-fluid" id="DivMedioTopo">                
+
+                <div class="container">
+
+                    <div class="row">                    
+
+                        <div class="col-xs-12">
+
+                            <nav class="navbar navbar-custom" role="navigation">
+                                <div class="container-fluid">
+
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#MenuNavegador">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="MenuNavegador">
+
+                                        <ul class="nav navbar-nav">
+
+                                            <li  id="LinkHome"><a>Home</a></li>
+
+                                            <!--Traz do Banco os Doutores Cadastrados Dinamicamente.-->
+                                            <li class="dropdown" id="LinkDoutor"></li>
+                                            
+                                            <!--<li><a  class="TrMenuContatenos"    id="LinkContactUs"   >Contate nos</a></li>-->
+                                            <li><a  class="TrMenuLocalizacao"   id="LinkLocalizacao" >Localizacao</a></li>
+                                            <li><a  class="TrMenuGaleria"       id="LinkGaleria"     >Galeria</a></li>
+                                            
+                                            <!--Lista do Banco Links Importantes-->
+                                            <li class="dropdown" id="btnLinks"></li>
+                                        </ul>
+
+                                        <ul class="nav navbar-nav navbar-right"> 
+
+                                            <li><a id="btnPortugues"><img src="img/icons/Brazil.png"/></a></li>
+                                            <li><a id="btnIngles"><img src="img/icons/eua.png"/></a></li>
+                                            <li><a id="btnEspanhol"><img src="img/icons/spain.png"/></a></li>
+                                            <li><a href="Paginas/pg_Login.php" id="LinkLogin"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                                        </ul>                                
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Area Responsavel por Carregar as Outras Paginas.-->
+        <section>
+            <div class="container-fluid">                
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-lg-12" id="DivPagina"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!--Integracao com o Jquery-->
+        <script src="jquery/jquery.min.js"></script>
+
+        <!--Integracao com o Bootstrap-->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!--Script de Conexao com o Ajax.-->
+        <script type="text/javascript" src="Ajax/ajax_Index.js"></script>
+        <script type="text/javascript" src="Ajax/ajax_pg_Doutores.js"></script>
+    </body>
+</html>
